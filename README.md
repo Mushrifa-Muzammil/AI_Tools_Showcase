@@ -16,22 +16,6 @@ A modern, responsive, and visually stunning **AI Tools Showcase Website** built 
 
 ---
 
-## 📸 Screenshots
-
-| Desktop View | Mobile View |
-|:---:|:---:|
-| ![Desktop Hero](https://via.placeholder.com/600x300/0a0a1a/00e5ff?text=Hero+Section+Desktop) | ![Mobile View](https://via.placeholder.com/300x500/0a0a1a/00e5ff?text=Mobile+Responsive) |
-| *Hero Section* | *Mobile Layout* |
-
-| AI Tools Cards | Pricing Section |
-|:---:|:---:|
-| ![AI Tools](https://via.placeholder.com/600x300/0a0a1a/00e5ff?text=12+AI+Tools+Cards) | ![Pricing](https://via.placeholder.com/600x300/0a0a1a/00e5ff?text=Pricing+Plans) |
-| *12 AI Tools Displayed* | *Free, Pro & Enterprise Plans* |
-
-> 💡 *Replace placeholder images with actual screenshots from your live site for best results.*
-
----
-
 ## 🛠️ Technologies Used
 
 | Technology | Purpose |
