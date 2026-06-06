@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <title>AI Forge | Next-Gen AI Tools Showcase</title>
+  <!-- Bootstrap 5 CSS + Icons + Google Fonts -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a1a;
+      scroll-behavior: smooth;
+    }
+
+    /* ========== NEW DARK THEME WITH CYAN & PURPLE ACCENTS ========== */
+    .gradient-bg {
+      background: linear-gradient(135deg, #0a0a1a 0%, #0f0f2a 100%);
+    }
+
+    .ai-gradient-text {
+      background: linear-gradient(120deg, #00e5ff, #a855f7, #3b82f6);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .btn-ai-primary {
+      background: linear-gradient(95deg, #00e5ff, #a855f7);
+      border: none;
+      color: white;
+      font-weight: 600;
+      padding: 12px 28px;
+      border-radius: 40px;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0, 229, 255, 0.3);
+      display: inline-block;
+      text-decoration: none;
+    }
+
+    .btn-ai-primary:hover {
+      transform: translateY(-3px);
+      background: linear-gradient(95deg, #00c4e5, #9333ea);
+      box-shadow: 0 15px 30px rgba(0, 229, 255, 0.4);
+      color: white;
+    }
+
+    .card-ai {
+      border-radius: 28px;
+      border: 1px solid rgba(0, 229, 255, 0.15);
+      background: rgba(10, 10, 26, 0.8);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      height: 100%;
+    }
+
+    .card-ai:hover {
+      transform: translateY(-10px);
+      border-color: rgba(0, 229, 255, 0.5);
+      box-shadow: 0 25px 40px -12px rgba(0, 229, 255, 0.2);
+    }
+
+    .icon-circle {
+      width: 70px;
+      height: 70px;
+      background: linear-gradient(145deg, rgba(0, 229, 255, 0.15), rgba(168, 85, 247, 0.15));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 35px;
+      margin-bottom: 1.2rem;
+      color: #00e5ff;
+      font-size: 2rem;
+      border: 1px solid rgba(0, 229, 255, 0.3);
+    }
+
+    .section-title {
+      font-weight: 800;
+      font-size: 2.6rem;
+      letter-spacing: -0.02em;
+      color: white;
+    }
+
+    .hero-section {
+      background: radial-gradient(circle at 20% 30%, rgba(0, 229, 255, 0.08) 0%, #0a0a1a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-section::before {
+      content: '';
+      position: absolute;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.15), transparent);
+      top: -150px;
+      right: -150px;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .navbar-blur {
+      backdrop-filter: blur(12px);
+      background-color: rgba(10, 10, 26, 0.9);
+      border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+    }
+
+    .footer-link {
+      text-decoration: none;
+      transition: 0.2s;
+    }
+
+    .footer-link:hover {
+      color: #00e5ff !important;
+    }
+
+    .btn-outline-light {
+      border: 1px solid rgba(0, 229, 255, 0.5);
+      background: transparent;
+      color: white;
+      transition: 0.3s;
+    }
+
+    .btn-outline-light:hover {
+      background: rgba(0, 229, 255, 0.1);
+      border-color: #00e5ff;
+      color: #00e5ff;
+    }
+
+    .tool-icon-bg {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.08), rgba(168, 85, 247, 0.08));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      color: #00e5ff;
+      border-bottom: 1px solid rgba(0, 229, 255, 0.2);
+    }
+
+    .badge-rating {
+      background: rgba(0, 229, 255, 0.15);
+      color: #00e5ff;
+      padding: 5px 12px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .hero-icon {
+      background: rgba(0, 229, 255, 0.05);
+      border-radius: 30px;
+      padding: 30px;
+      border: 1px solid rgba(0, 229, 255, 0.2);
+    }
+
+    /* Pricing Cards */
+    .pricing-card {
+      border-radius: 32px;
+      transition: all 0.3s;
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      background: rgba(10, 10, 26, 0.8);
+      backdrop-filter: blur(10px);
+      height: 100%;
+    }
+
+    .pricing-card:hover {
+      transform: scale(1.02);
+      border-color: #00e5ff;
+      box-shadow: 0 20px 40px rgba(0, 229, 255, 0.1);
+    }
+
+    .pricing-popular {
+      background: linear-gradient(135deg, rgba(0, 229, 255, 0.15), rgba(168, 85, 247, 0.15));
+      border: 1px solid #00e5ff;
+    }
+
+    .testimonial-card {
+      background: rgba(10, 10, 26, 0.8);
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      padding: 1.5rem;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(0, 229, 255, 0.15);
+      height: 100%;
+    }
+
+    .bg-light {
+      background: #0f0f20 !important;
+    }
+
+    .text-secondary {
+      color: #a0a0c0 !important;
+    }
+
+    .text-muted {
+      color: #8080a0 !important;
+    }
+
+    hr {
+      border-color: rgba(0, 229, 255, 0.2) !important;
+    }
+
+    .form-control {
+      background: rgba(10, 10, 26, 0.9);
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      color: white;
+    }
+
+    .form-control:focus {
+      background: rgba(10, 10, 26, 1);
+      border-color: #00e5ff;
+      box-shadow: 0 0 0 0.2rem rgba(0, 229, 255, 0.25);
+      color: white;
+    }
+
+    .form-control::placeholder {
+      color: #606080;
+    }
+
+    .text-primary {
+      color: #00e5ff !important;
+    }
+
+    .bg-white {
+      background: #0a0a1a !important;
+    }
+
+    .text-dark {
+      color: white !important;
+    }
+
+    .badge.bg-secondary {
+      background: rgba(0, 229, 255, 0.15) !important;
+      color: #00e5ff !important;
+    }
+
+    .btn-outline-primary {
+      border-color: #00e5ff;
+      color: #00e5ff;
+    }
+
+    .btn-outline-primary:hover {
+      background: #00e5ff;
+      border-color: #00e5ff;
+      color: #0a0a1a;
+    }
+
+    @media (max-width: 768px) {
+      .section-title {
+        font-size: 2rem;
+      }
+      .hero-section h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===================== NAVBAR ===================== -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-blur py-3">
+  <div class="container">
+    <a class="navbar-brand fw-bold fs-3" href="#">
+      <i class="fas fa-microchip me-2 text-info" style="color: #00e5ff !important;"></i>AI<span class="ai-gradient-text">Forge</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarMain">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-3">
+        <li class="nav-item"><a class="nav-link active fw-semibold" href="#home" style="color: #00e5ff;">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#tools">AI Tools</a></li>
+        <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+        <li class="nav-item"><a class="nav-link" href="#pricing">Pricing</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Join Waitlist</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- ===================== HERO SECTION ===================== -->
+<section id="home" class="hero-section pt-5 mt-5">
+  <div class="container py-5 mt-3">
+    <div class="row align-items-center g-5 py-xl-4">
+      <div class="col-lg-6 text-white">
+        <span class="badge bg-primary bg-opacity-25 px-3 py-2 rounded-pill mb-3" style="background: rgba(0, 229, 255, 0.15) !important; color: #00e5ff;">
+          <i class="fas fa-robot me-1"></i> 50+ AI Tools Available
+        </span>
+        <h1 class="display-3 fw-bold mb-3">Unleash the <span class="ai-gradient-text">Power of AI</span> Tools</h1>
+        <p class="lead text-light-emphasis opacity-90 mb-4" style="color: #c0c0e0;">Discover 50+ cutting-edge AI tools for content creation, coding, design, video, audio, and automation — all in one platform.</p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#tools" class="btn-ai-primary"><i class="fas fa-arrow-down me-2"></i>Explore AI Tools</a>
+          <a href="#contact" class="btn btn-outline-light rounded-pill px-4 py-2 fw-semibold"><i class="fas fa-bolt me-2"></i>Start Free Trial</a>
+        </div>
+        <div class="mt-5 d-flex gap-4 flex-wrap">
+          <div><i class="fas fa-check-circle" style="color: #00e5ff;"></i> <span class="ms-1">50+ AI tools</span></div>
+          <div><i class="fas fa-rocket" style="color: #00e5ff;"></i> <span class="ms-1">Real-time analytics</span></div>
+          <div><i class="fas fa-globe" style="color: #00e5ff;"></i> <span class="ms-1">20+ languages</span></div>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center">
+        <div class="hero-icon">
+          <i class="fas fa-microchip" style="font-size: 8rem; color: #00e5ff;"></i>
+          <p class="text-white mt-3 fw-bold">AI Dashboard Preview</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AI TOOLS SHOWCASE ===================== -->
+<section id="tools" class="py-5">
+  <div class="container py-5">
+    <div class="text-center mb-5">
+      <span class="badge bg-secondary bg-opacity-10 px-3 py-2 rounded-pill" style="background: rgba(0, 229, 255, 0.15) !important; color: #00e5ff;">
+        <i class="fas fa-cubes me-1"></i> AI Ecosystem
+      </span>
+      <h2 class="section-title mt-3">Featured <span class="ai-gradient-text">AI Tools</span></h2>
+      <p class="mx-auto" style="max-width: 600px; color: #a0a0c0;">Discover the most powerful AI tools across 10+ categories</p>
+    </div>
+
+    <div class="row g-4">
+      <!-- Tool 1 - ChatGPT -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card-ai card h-100">
+          <div class="tool-icon-bg"><i class="fas fa-comment-dots"></i></div>
+          <div class="card-body">
+            <div class="icon-circle"><i class="fas fa-comment-dots"></i></div>
+            <h4 class="fw-bold text-white">ChatGPT</h4>
+            <p class="text-secondary">Advanced conversational AI for content, coding, research, and creative writing. Created by OpenAI.</p>
+            <span class="badge-rating"><i class="fas fa-star" style="color: #ffc107;"></i> 4.9 Rating</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tool 2 - DeepSeek AI -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card-ai card h-100">
+          <div class="tool-icon-bg"><i class="fas fa-brain"></i></div>
+          <div class="card-body">
+            <div class="icon-circle"><i class="fas fa-brain"></i></div>
+            <h4 class="fw-bold text-white">DeepSeek AI</h4>
+            <p class="text-secondary">Powerful AI assistant for coding, complex reasoning, document analysis, and real-time problem solving. Free and accessible.</p>
+            <span class="badge-rating"><i class="fas fa-star" style="color: #ffc107;"></i> 4.9 Rating</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tool 3 - Google Gemini -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card-ai card h-100">
+          <div class="tool-icon-bg"><i class="fab fa-google"></i></div>
+          <div class="card-body">
+            <div class="icon-circle"><i class="fab fa-google"></i></div>
+            <h4 class="fw-bold text-white">Google Gemini</h4>
+            <p class="text-secondary">Google's most advanced AI model for text, image, video, and audio understanding.</p>
+            <span class="badge-rating"><i class="fas fa-star" style="color: #ffc107;"></i> 4.8 Rating</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tool 4 - DALL-E 3 -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card-ai card h-100">
+          <div class="tool-icon-bg"><i class="fas fa-image"></i></div>
+          <div class="card-body">
+            <div class="icon-circle"><i class="fas fa-image"></i></div>
+            <h4 class="fw-bold text-white">DALL-E 3</h4>
+            <p class="text-secondary">Text-to-image generation by OpenAI - exceptional prompt understanding and photorealism.</p>
+            <span class="badge-rating"><i class="fas fa-star" style="color: #ffc107;"></i> 4.9 Rating</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tool 5 - Claude AI -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card-ai card h-100">
+          <div class="tool-icon-bg"><i class="fas fa-brain"></i></div>
+          <div class="card-body">
+            <div class="icon-circle"><i class="fas fa-brain"></i></div>
+            <h4 class="fw-bold text-white">Claude AI</h4>
+            <p class="text-secondary">Ethical AI assistant by Anthropic for complex reasoning and document analysis.</p>
+            <span class="badge-rating"><i class="fas fa-star" style="color: #ffc107;"></i> 4.8 Rating</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tool 6 - GitHub Copilot -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card-ai card h-100">
+          <div class="tool-icon-bg"><i class="fab fa-github"></i></div>
+          <div class="card-body">
+            <div class="icon-circle"><i class="fab fa-github"></i></div>
+            <h4 class="fw-bold text-white">GitHub Copilot</h4>
+            <p class="text-secondary">AI pair programmer that autocompletes code in real-time. Built by GitHub & OpenAI.</p>
+            <span class="badge-rating"><i class="fas fa-star" style="color: #ffc107;"></i> 4.7 Rating</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tool 7 - Synthesia -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card-ai card h-100">
+          <div class="tool-icon-bg"><i class="fas fa-video"></i></div>
+          <div class="card-body">
+            <div class="icon-circle"><i class="fas fa-video"></i></div>
+            <h4 class="fw-bold text-white">Synthesia</h4>
+            <p class="text-secondary">Create AI videos with realistic avatars in 120+ languages. No actors or cameras needed.</p>
+            <span class="badge-rating"><i class="fas fa-star" style="color: #ffc107;"></i> 4.7 Rating</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tool 8 - Jasper AI -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card-ai card h-100">
+          <div class="tool-icon-bg"><i class="fas fa-pen-fancy"></i></div>
+          <div class="card-body">
+            <div class="icon-circle"><i class="fas fa-pen-fancy"></i></div>
+            <h4 class="fw-bold text-white">Jasper AI</h4>
+            <p class="text-secondary">Marketing content generation, SEO blogs, and social media posts for businesses.</p>
+            <span class="badge-rating"><i class="fas fa-star" style="color: #ffc107;"></i> 4.8 Rating</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tool 9 - Perplexity AI -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card-ai card h-100">
+          <div class="tool-icon-bg"><i class="fas fa-search"></i></div>
+          <div class="card-body">
+            <div class="icon-circle"><i class="fas fa-search"></i></div>
+            <h4 class="fw-bold text-white">Perplexity AI</h4>
+            <p class="text-secondary">AI-powered search engine with cited answers from the web and real-time information.</p>
+            <span class="badge-rating"><i class="fas fa-star" style="color: #ffc107;"></i> 4.8 Rating</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tool 10 - Copy.ai -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card-ai card h-100">
+          <div class="tool-icon-bg"><i class="fas fa-copy"></i></div>
+          <div class="card-body">
+            <div class="icon-circle"><i class="fas fa-copy"></i></div>
+            <h4 class="fw-bold text-white">Copy.ai</h4>
+            <p class="text-secondary">AI copywriting for ads, emails, blogs, and product descriptions. Fast and easy to use.</p>
+            <span class="badge-rating"><i class="fas fa-star" style="color: #ffc107;"></i> 4.6 Rating</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tool 11 - Midjourney AI (NEW EXTRA TOOL 1) -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card-ai card h-100">
+          <div class="tool-icon-bg"><i class="fas fa-palette"></i></div>
+          <div class="card-body">
+            <div class="icon-circle"><i class="fas fa-palette"></i></div>
+            <h4 class="fw-bold text-white">Midjourney AI</h4>
+            <p class="text-secondary">AI image generation tool that creates stunning artwork from text descriptions. Popular among digital artists and designers.</p>
+            <span class="badge-rating"><i class="fas fa-star" style="color: #ffc107;"></i> 4.9 Rating</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tool 12 - Adobe Firefly (NEW EXTRA TOOL 2) -->
+      <div class="col-md-6 col-lg-4">
+        <div class="card-ai card h-100">
+          <div class="tool-icon-bg"><i class="fas fa-fire"></i></div>
+          <div class="card-body">
+            <div class="icon-circle"><i class="fas fa-fire"></i></div>
+            <h4 class="fw-bold text-white">Adobe Firefly</h4>
+            <p class="text-secondary">Adobe's creative AI for generating images, text effects, and vector graphics directly in Creative Cloud apps.</p>
+            <span class="badge-rating"><i class="fas fa-star" style="color: #ffc107;"></i> 4.8 Rating</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FEATURES SECTION ===================== -->
+<section id="features" class="py-5 bg-white">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <h2 class="section-title">Why Choose <span class="ai-gradient-text">AIForge?</span></h2>
+      <p class="mx-auto" style="max-width: 600px; color: #a0a0c0;">The ultimate platform for discovering and using AI tools</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="text-center p-4">
+          <i class="fas fa-infinity fs-1" style="color: #00e5ff;"></i>
+          <h4 class="mt-3 text-white">Unlimited Access</h4>
+          <p class="text-secondary">Access 50+ AI tools with a single subscription</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="text-center p-4">
+          <i class="fas fa-clock fs-1" style="color: #00e5ff;"></i>
+          <h4 class="mt-3 text-white">24/7 Support</h4>
+          <p class="text-secondary">AI-powered chat support anytime, anywhere</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="text-center p-4">
+          <i class="fas fa-shield-alt fs-1" style="color: #00e5ff;"></i>
+          <h4 class="mt-3 text-white">Enterprise Security</h4>
+          <p class="text-secondary">Bank-level encryption and data privacy</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PRICING SECTION ===================== -->
+<section id="pricing" class="py-5">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <h2 class="section-title">Simple <span class="ai-gradient-text">Pricing</span></h2>
+      <p class="text-secondary">Choose the plan that works for you</p>
+    </div>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-4">
+        <div class="pricing-card card p-4 text-center">
+          <h3 class="text-white">Free</h3>
+          <div class="display-4 fw-bold text-white">$0</div>
+          <p class="text-muted">per month</p>
+          <hr>
+          <ul class="list-unstyled text-secondary">
+            <li class="mb-2">✓ 5 AI tools access</li>
+            <li class="mb-2">✓ 50 credits/month</li>
+            <li class="mb-2">✓ Basic support</li>
+          </ul>
+          <a href="#" class="btn btn-outline-primary rounded-pill mt-3">Get Started</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="pricing-card pricing-popular card p-4 text-center">
+          <span class="badge bg-warning text-dark mb-2 align-self-center" style="width: fit-content;">🔥 Most Popular</span>
+          <h3 class="text-white">Pro</h3>
+          <div class="display-4 fw-bold text-white">$29</div>
+          <p class="opacity-75 text-white-50">per month</p>
+          <hr>
+          <ul class="list-unstyled text-white-50">
+            <li class="mb-2">✓ 50+ AI tools access</li>
+            <li class="mb-2">✓ Unlimited credits</li>
+            <li class="mb-2">✓ Priority support</li>
+            <li class="mb-2">✓ API access</li>
+          </ul>
+          <a href="#" class="btn btn-light rounded-pill mt-3 fw-bold" style="color: #0a0a1a;">Start Free Trial</a>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="pricing-card card p-4 text-center">
+          <h3 class="text-white">Enterprise</h3>
+          <div class="display-4 fw-bold text-white">Custom</div>
+          <p class="text-muted">per month</p>
+          <hr>
+          <ul class="list-unstyled text-secondary">
+            <li class="mb-2">✓ Everything in Pro</li>
+            <li class="mb-2">✓ Dedicated account manager</li>
+            <li class="mb-2">✓ On-premise deployment</li>
+          </ul>
+          <a href="#" class="btn btn-outline-primary rounded-pill mt-3">Contact Sales</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="py-5 bg-light">
+  <div class="container py-4">
+    <div class="text-center mb-5">
+      <h2 class="section-title">Trusted by <span class="ai-gradient-text">5,000+</span> Users</h2>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <i class="fas fa-user-circle fs-1 mb-3" style="color: #00e5ff;"></i>
+          <p class="text-secondary">"AIForge has completely transformed how I work. The variety of AI tools available is incredible!"</p>
+          <h6 class="fw-bold mt-2 text-white">- John Doe</h6>
+          <small class="text-muted">Content Creator</small>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <i class="fas fa-user-circle fs-1 mb-3" style="color: #00e5ff;"></i>
+          <p class="text-secondary">"Best investment for my startup. The AI tools saved us hundreds of hours of manual work."</p>
+          <h6 class="fw-bold mt-2 text-white">- Sarah Miller</h6>
+          <small class="text-muted">Startup Founder</small>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <i class="fas fa-user-circle fs-1 mb-3" style="color: #00e5ff;"></i>
+          <p class="text-secondary">"The AI-powered coding assistant alone is worth the subscription. Highly recommended!"</p>
+          <h6 class="fw-bold mt-2 text-white">- Alex Kumar</h6>
+          <small class="text-muted">Software Engineer</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== NEWSLETTER SECTION ===================== -->
+<section id="contact" class="py-5">
+  <div class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card border-0 shadow-lg rounded-4 overflow-hidden" style="background: rgba(10, 10, 26, 0.9); backdrop-filter: blur(10px); border: 1px solid rgba(0, 229, 255, 0.3);">
+          <div class="card-body p-5 text-center" style="background: linear-gradient(135deg, rgba(0, 229, 255, 0.1), rgba(168, 85, 247, 0.1));">
+            <h3 class="fw-bold text-white mb-3">Join the AI Revolution!</h3>
+            <p class="text-white-50 mb-4">Get weekly AI tool updates, tips, and exclusive offers.</p>
+            <form action="#" method="get" class="row g-2 justify-content-center">
+              <div class="col-sm-7">
+                <input type="email" class="form-control form-control-lg rounded-pill" name="email" placeholder="Enter your email" required>
+              </div>
+              <div class="col-sm-3">
+                <button type="submit" class="btn btn-ai-primary rounded-pill px-4 py-2 fw-bold">Subscribe →</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="gradient-bg text-white pt-5 pb-4">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-5">
+        <div class="d-flex align-items-center gap-2 mb-3">
+          <i class="fas fa-microchip fs-2" style="color: #00e5ff;"></i>
+          <span class="fs-3 fw-bold">AI<span class="ai-gradient-text">Forge</span></span>
+        </div>
+        <p class="text-white-50">The ultimate platform for discovering and using AI tools. 50+ AI solutions at your fingertips.</p>
+        <div class="d-flex gap-3 fs-4 mt-3">
+          <a href="#" class="text-white-50 footer-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-white-50 footer-link"><i class="fab fa-github"></i></a>
+          <a href="#" class="text-white-50 footer-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="text-white-50 footer-link"><i class="fab fa-discord"></i></a>
+        </div>
+      </div>
+      <div class="col-md-2">
+        <h6 class="fw-bold mb-3 text-white">Product</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="#tools" class="text-white-50 text-decoration-none footer-link">AI Tools</a></li>
+          <li class="mb-2"><a href="#pricing" class="text-white-50 text-decoration-none footer-link">Pricing</a></li>
+          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none footer-link">API</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2">
+        <h6 class="fw-bold mb-3 text-white">Resources</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none footer-link">Blog</a></li>
+          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none footer-link">Documentation</a></li>
+          <li class="mb-2"><a href="#" class="text-white-50 text-decoration-none footer-link">Community</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6 class="fw-bold mb-3 text-white">Newsletter</h6>
+        <form action="#" method="get" class="d-flex gap-2">
+          <input type="email" class="form-control form-control-sm" style="background: rgba(10, 10, 26, 0.9); border-color: rgba(0, 229, 255, 0.3); color: white;" placeholder="Email" name="footerEmail">
+          <button type="submit" class="btn btn-sm" style="border-color: #00e5ff; color: #00e5ff; background: transparent;">Send</button>
+        </form>
+      </div>
+    </div>
+    <hr class="mt-4" style="border-color: rgba(0, 229, 255, 0.2);">
+    <div class="text-center text-white-50 small pt-2">
+      &copy; 2026 AIForge — Empowering the future with AI.
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
